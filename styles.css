@@ -1164,14 +1164,14 @@ h1 { font-size: 6rem; line-height: 0.85; text-transform: uppercase; font-weight:
     .nav-links a { font-size: 1.1rem; padding: 10px; width: 100%; text-align: center; }
     .mobile-only { width: 80%; text-align: center; margin-top: 15px; }
 
-    .hero { height: auto; padding-top: 150px; padding-bottom: 80px; }
+    .hero { height: auto; padding-top: 120px; padding-bottom: 60px; }
     .hero-grid { grid-template-columns: 1fr; text-align: center; gap: 60px; }
     .hero-image-wrapper { margin: 0 auto; max-width: 280px; }
     .hero-text { align-items: center; display: flex; flex-direction: column; }
     .hero-cta { flex-direction: column; gap: 25px; }
     .contact-icons-layer { margin-left: 0; }
     .stat-card { left: 50%; transform: translateX(-50%); right: auto; bottom: -40px; width: 85%; }
-    .layer-card { margin: 50px 4%; padding: 25px 5%; border-radius: 20px; } /* Más espacio también en móviles */
+    .layer-card { margin: 30px 4%; padding: 30px 5%; border-radius: 20px; } /* Márgenes más compactos para que no se vean despegadas */
     .title-bg { font-size: 2rem; text-align: center; }
     .contact-container { grid-template-columns: 1fr; }
     .display-title { font-size: 2.2rem; }
@@ -1187,16 +1187,60 @@ h1 { font-size: 6rem; line-height: 0.85; text-transform: uppercase; font-weight:
     .highlight, .wide { grid-row: auto; grid-column: auto; }
     .quote-content p { font-size: 1.1rem; }
     .experience-card { padding: 15px; }
+
+    /* --- AJUSTES GENERALES DE RESPONSIVE --- */
+    .project-grid { grid-template-columns: 1fr; gap: 30px; } /* Evita scroll horizontal en pantallas pequeñas */
+    .glass-form-wrapper { padding: 35px 20px; } /* Reduce padding excesivo del form en celulares */
+
+    /* --- AJUSTES DEL MODAL PARA MÓVILES --- */
+    .modal-content {
+        padding: 25px 20px;
+        max-height: 85vh; /* Evita que el modal sea más grande que la pantalla */
+        overflow-y: auto; /* Permite hacer scroll si el texto es muy largo */
+    }
+    .modal-img-wrapper {
+        height: 180px; /* Reducimos la altura de la imagen en celular */
+        margin-bottom: 15px;
+    }
+    .modal-content h2 {
+        font-size: 1.6rem;
+    }
+    .modal-actions {
+        flex-direction: column; /* Apila los botones uno sobre el otro */
+        gap: 15px;
+    }
+    .modal-actions a {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+    }
 }
 
 @media (max-width: 600px) {
+    .footer-top-branding {
+        padding: 60px 0; /* Reducir el padding vertical para que no sea tan gigante en móviles */
+    }
+
     h1 { font-size: 2.8rem; }
     .hero-cta { width: 100%; }
     .btn-primary { width: 100%; text-align: center; }
     .contact-icons-layer { justify-content: center; width: 100%; }
     .footer-container { grid-template-columns: 1fr; gap: 40px; text-align: center; }
-    .branding-content { flex-direction: column; gap: 30px; }
-    .center-hud { order: -1; margin-bottom: 15px; } /* HUD primero */
-    .side-item { width: 100%; max-width: 260px; }
-    .radar-circle { width: 220px; height: 220px; } /* Ajuste responsivo del nuevo súper radar */
+    .branding-content { 
+        flex-direction: column; 
+        gap: 30px; 
+        height: 100%; /* Forzar al contenedor a ocupar toda la altura disponible */
+        justify-content: center; /* Centrar explícitamente el contenido (los 3 items) verticalmente */
+    }
+
+    /* Ajuste óptico: Subimos el radar para que apunte exactamente a la imagen del logo, compensando el espacio de las redes sociales */
+    .radar-container {
+        transform: translate(-50%, calc(-50% - 45px));
+    }
+
+    .center-hud { order: 0; margin-bottom: 0; } /* Eliminamos order -1 para alinear el radar matemáticamente al centro del logo */
+    .side-item { width: 100%; max-width: 260px; margin: 0 auto; }
+    .radar-circle { width: 280px; height: 280px; } /* Ampliado para cubrir el logo y las redes sin cortarse */
 }

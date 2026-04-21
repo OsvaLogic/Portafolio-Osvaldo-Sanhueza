@@ -32,7 +32,7 @@ El proyecto fue construido utilizando tecnologías web nativas para garantizar l
 
 ## 📂 Proyectos Destacados (Incluidos en el Portafolio)
 
-1. **TubeBeat:** Aplicación de escritorio moderna (Python, CustomTkinter, yt-dlp) para automatizar descargas de media en alta calidad.
+1. **[TubeBeat](https://github.com/OsvaLogic/TubeBeat):** Aplicación de escritorio moderna (Python, CustomTkinter, yt-dlp) para automatizar descargas de media en alta calidad.
 2. **E-commerce:** Plataforma High-End de e-commerce (Django, PostgreSQL) con diseño agresivo y oscuro para el nicho gamer.
 
 ---
