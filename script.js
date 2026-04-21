@@ -3,7 +3,7 @@ const projectData = {
     tubebeat: {
         title: "TubeBeat",
         stack: "Python | CustomTkinter | Pillow | yt-dlp | FFmpeg | Archivo de texto plano (txt)",
-        desc: "TubeBeat es una potente herramienta de escritorio para descargar videos y extraer audio. Integra CustomTkinter para una interfaz visual moderna e intuitiva, yt-dlp como motor de extracción de alta velocidad y FFmpeg para la conversión nativa de medios. Además, soporta descargas por lotes automatizadas mediante la lectura de enlaces desde archivos de texto (.txt) y renderiza las miniaturas en la interfaz utilizando Pillow.",
+        desc: "TubeBeat es una potente herramienta de escritorio diseñada para la descarga y conversión de contenido multimedia. Integra CustomTkinter para ofrecer una interfaz gráfica moderna, oscura e intuitiva. Su motor de extracción está impulsado por yt-dlp, garantizando descargas de alta velocidad y compatibilidad con múltiples plataformas, mientras que FFmpeg se encarga de la conversión nativa de medios sin pérdida de calidad. Destaca por su capacidad para procesar descargas masivas automatizadas leyendo secuencias desde archivos de texto (.txt), optimización de recursos locales, y una experiencia fluida con renderizado de miniaturas en tiempo real usando Pillow. Una solución robusta que prioriza el rendimiento y la privacidad del usuario al procesar todo de manera local.",
         img: "templates/Portada TubeBeat.jpg",
         repo: "https://github.com/OsvaLogic/TubeBeat",
         demo: "#"
@@ -11,7 +11,7 @@ const projectData = {
     ecommerce: {
         title: "Gamer E-commerce",
         stack: "Python | Django | PostgreSQL | psycopg2-binary | Pillow",
-        desc: "Plataforma de ventas con diseño oscuro y agresivo. Optimización de carga y experiencia de usuario enfocada en el sector gaming.",
+        desc: "Plataforma web de comercio electrónico High-End diseñada específicamente para el exigente nicho gamer. Desarrollada con el robusto framework Django y respaldada por una base de datos relacional PostgreSQL, garantizando máxima seguridad, integridad referencial y fiabilidad en la gestión de datos críticos. El diseño de la interfaz destaca por una estética 'dark' agresiva y de alto contraste, optimizada para ofrecer una experiencia de usuario altamente inmersiva y tiempos de retención prolongados. Incluye gestión escalable de inventario, un panel de administración avanzado, y procesamiento eficiente de medios a través de Pillow. Su arquitectura lógica está estructurada para soportar alto tráfico y ofrecer tiempos de respuesta ultrarrápidos.",
         img: "templates/portada ecommerce.jpg",
         repo: "https://github.com/OsvaLogic",
         demo: "#"
@@ -72,13 +72,12 @@ function typeWriter() {
     }
 }
 
-// Iniciar cuando la página cargue
-window.onload = typeWriter;
-
-document.querySelector('.modern-form').addEventListener('submit', (e) => {
-    e.preventDefault();
-    alert('Mensaje enviado. Osva.Logic procesando información...');
-    e.target.reset();
+// PANTALLA DE CARGA Y ANIMACIÓN INICIAL
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        document.body.classList.add('loaded'); // Desvanece la pantalla de carga
+        setTimeout(typeWriter, 600); // Inicia el texto de la terminal justo después de cargar
+    }, 2500); // La pantalla de carga dura 2.5 segundos
 });
 
 // LÓGICA DEL MENÚ MÓVIL (HAMBURGUESA)

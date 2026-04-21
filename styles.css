@@ -69,6 +69,51 @@ body::before {
     background: var(--red);
 }
 
+/* --- PANTALLA DE CARGA (LOADING SCREEN) --- */
+#loading-screen {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100vh;
+    background: var(--bg-deep);
+    z-index: 999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.8s ease-out, visibility 0.8s ease-out;
+}
+
+.loading-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    animation: pulseLoad 1.5s infinite alternate ease-in-out;
+}
+
+.loading-logo {
+    height: 180px; /* Logo grande al centro */
+    width: auto;
+    object-fit: contain;
+    mix-blend-mode: screen;
+}
+
+#loading-screen .logo-text {
+    font-family: var(--font-mono);
+    font-weight: 900;
+    font-size: 3rem;
+    letter-spacing: -1px;
+}
+#loading-screen .logo-text span { color: var(--red); text-shadow: 0 0 20px var(--red-glow); }
+
+@keyframes pulseLoad {
+    0% { transform: scale(0.95); opacity: 0.8; filter: drop-shadow(0 0 5px rgba(255,0,0,0.2)); }
+    100% { transform: scale(1.05); opacity: 1; filter: drop-shadow(0 0 30px var(--red-glow)); }
+}
+
+body.loaded #loading-screen {
+    opacity: 0;
+    visibility: hidden;
+}
+
 /* --- 2. EFECTO DE CAPAS Y RELIEVE (LAYOUT) --- */
 
 /* Tarjetas con relieve que "flotan" sobre el fondo */
@@ -114,8 +159,16 @@ section {
     box-shadow: 0 10px 40px rgba(0,0,0,0.7);
 }
 
-.logo { font-weight: 900; font-size: 1.6rem; letter-spacing: -1px; }
+.logo { 
+    display: flex; 
+    align-items: center; 
+    gap: 12px;
+    font-weight: 900; 
+    font-size: 1.6rem; 
+    letter-spacing: -1px; 
+}
 .logo span { color: var(--red); text-shadow: 0 0 15px var(--red-glow); }
+.nav-logo-icon { height: 32px; width: auto; object-fit: contain; mix-blend-mode: screen; }
 
 /* --- ANIMACIÓN DE "GLITCH" SUAVE AL LOGO --- */
 .logo:hover {
@@ -828,16 +881,17 @@ h1 { font-size: 6rem; line-height: 0.85; text-transform: uppercase; font-weight:
 
 /* --- FOOTER MODERN V2 --- */
 .main-footer {
-    background: #050505;
-    padding: 100px 10% 40px; /* Padding superior amplio */
+    background: var(--bg-deep); /* Se funde con el fondo general */
+    padding: 60px 8% 40px; /* Padding más equilibrado y armónico */
     border-top: 1px solid var(--glass-border);
 }
 
 .footer-container {
     display: grid;
-    grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
-    gap: 60px;
-    margin-bottom: 80px;
+    grid-template-columns: repeat(3, 1fr); /* Simetría perfecta */
+    gap: 40px;
+    margin-bottom: 60px;
+    text-align: center; /* Textos centrados para mayor elegancia */
 }
 
 .footer-col h4 {
@@ -857,11 +911,143 @@ h1 { font-size: 6rem; line-height: 0.85; text-transform: uppercase; font-weight:
 .footer-col ul li a { text-decoration: none; color: inherit; }
 .footer-col ul li a:hover { color: var(--red); padding-left: 5px; }
 
-.footer-tagline { margin-top: 20px; }
+/* --- LOGO Y RADAR SUPERIOR (DISEÑO HIGH-TECH HUD) --- */
+.footer-top-branding {
+    position: relative;
+    width: 100%;
+    padding: 90px 0; /* Más espacio para la majestuosidad del radar */
+    margin-bottom: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    background: radial-gradient(circle at center, rgba(255, 0, 0, 0.02) 0%, transparent 50%);
+    transition: var(--transition);
+}
+
+/* ¡Magia Pura! Al pasar el mouse por el logo, el entorno reacciona */
+.footer-top-branding:has(.logo:hover) {
+    background: radial-gradient(circle at center, rgba(255, 0, 0, 0.08) 0%, transparent 60%);
+}
+.footer-top-branding:has(.logo:hover) .radar-circle::after {
+    background: conic-gradient(from 0deg, transparent 60%, rgba(255, 0, 0, 0.3) 100%);
+    animation: spinRadar 1.5s linear infinite; /* El escáner se acelera */
+}
+
+.radar-container {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    display: flex; justify-content: center; align-items: center;
+}
+
+.radar-circle {
+    position: absolute;
+    width: 320px; height: 320px;
+    border: 1px dashed rgba(255, 0, 0, 0.25);
+    border-radius: 50%;
+    box-shadow: 0 0 40px rgba(255, 0, 0, 0.05), inset 0 0 40px rgba(255, 0, 0, 0.05);
+    animation: spinRadar 30s linear infinite;
+}
+
+/* Anillo interior rotando en sentido contrario */
+.radar-circle::before {
+    content: ''; position: absolute;
+    top: 25px; left: 25px; right: 25px; bottom: 25px;
+    border: 1px dotted rgba(255, 0, 0, 0.4);
+    border-radius: 50%;
+    animation: spinRadarReverse 20s linear infinite;
+}
+
+/* Haz de luz de escáner (Conic Gradient) */
+.radar-circle::after {
+    content: ''; position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    border-radius: 50%;
+    background: conic-gradient(from 0deg, transparent 75%, rgba(255, 0, 0, 0.12) 100%);
+    animation: spinRadar 4s linear infinite;
+}
+
+.radar-line-h {
+    position: absolute; width: 100%; height: 1px;
+    background: linear-gradient(90deg, transparent 10%, rgba(255, 0, 0, 0.6) 50%, transparent 90%);
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.3); /* Resplandor láser */
+}
+
+.radar-line-v {
+    position: absolute; height: 100%; width: 1px;
+    background: linear-gradient(180deg, transparent 10%, rgba(255, 0, 0, 0.6) 50%, transparent 90%);
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+}
+
+.branding-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    width: 100%;
+}
+
+.side-item {
+    color: var(--text-dim);
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    background: linear-gradient(135deg, rgba(15, 15, 15, 0.9), rgba(5, 5, 5, 0.95)); /* Más metálico */
+    padding: 15px 25px;
+    border-radius: 4px; /* Bordes afilados tipo Sci-Fi */
+    border: 1px solid var(--glass-border);
+    border-left: 3px solid var(--red); /* Acento técnico lateral */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.6);
+    display: flex; align-items: center; justify-content: center;
+    width: 240px; 
+    transition: var(--transition);
+    overflow: hidden;
+    position: relative;
+}
+
+/* Haz de luz de barrido al hacer hover en las tarjetas */
+.side-item::after {
+    content: ''; position: absolute;
+    top: 0; left: -100%; width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,0,0,0.15), transparent);
+    transition: 0.5s;
+}
+.side-item:hover::after { left: 100%; }
+
+.side-item i { color: var(--red); margin-right: 10px; transition: 0.3s; font-size: 1.1rem; }
+.side-item:hover { border-color: var(--red); color: #fff; transform: translateY(-3px) scale(1.02); box-shadow: 0 15px 30px rgba(255,0,0,0.15); }
+.side-item:hover i { text-shadow: 0 0 15px var(--red-glow); }
+
+.main-footer .logo {
+    flex-direction: column; align-items: center; gap: 10px; margin: 0;
+}
+.main-footer .nav-logo-icon { height: 110px; mix-blend-mode: screen; filter: drop-shadow(0 0 15px rgba(255,0,0,0.1)); }
+
+.center-hud {
+    display: flex; flex-direction: column; align-items: center; gap: 20px; position: relative; z-index: 2;
+}
+
+@keyframes spinRadar {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+@keyframes spinRadarReverse {
+    0% { transform: rotate(360deg); }
+    100% { transform: rotate(0deg); }
+}
+
+.footer-tagline { margin-top: 20px; display: flex; gap: 30px; justify-content: center; flex-wrap: wrap; }
 .footer-tagline li { color: var(--red) !important; font-family: var(--font-mono); font-size: 0.8rem !important; }
 .footer-tagline i { width: 20px; }
 
-.footer-socials { display: flex; gap: 15px; margin-top: 20px; }
+.footer-socials { display: flex; justify-content: center; gap: 20px; }
 .footer-socials a {
     width: 40px; height: 40px;
     background: rgba(255,255,255,0.05);
@@ -1009,5 +1195,8 @@ h1 { font-size: 6rem; line-height: 0.85; text-transform: uppercase; font-weight:
     .btn-primary { width: 100%; text-align: center; }
     .contact-icons-layer { justify-content: center; width: 100%; }
     .footer-container { grid-template-columns: 1fr; gap: 40px; text-align: center; }
-    .footer-socials { justify-content: center; }
+    .branding-content { flex-direction: column; gap: 30px; }
+    .center-hud { order: -1; margin-bottom: 15px; } /* HUD primero */
+    .side-item { width: 100%; max-width: 260px; }
+    .radar-circle { width: 220px; height: 220px; } /* Ajuste responsivo del nuevo súper radar */
 }

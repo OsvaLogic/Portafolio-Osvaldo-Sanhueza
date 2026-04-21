@@ -14,8 +14,19 @@
 </head>
 <body>
 
+    <!-- PANTALLA DE CARGA (LOADING SCREEN) -->
+    <div id="loading-screen">
+        <div class="loading-content">
+            <img src="templates/Logo color blanco.png" alt="Logo Osva.Logic" class="loading-logo">
+            <div class="logo-text">OSVA<span>.LOGIC</span></div>
+        </div>
+    </div>
+
     <nav class="glass-nav">
-        <div class="logo">OSVA<span>.LOGIC</span></div>
+        <div class="logo">
+            <img src="templates/Logo color blanco.png" alt="Logo Osva.Logic" class="nav-logo-icon">
+            <div class="logo-text">OSVA<span>.LOGIC</span></div>
+        </div>
         <ul class="nav-links" id="nav-links">
             <li><a href="#home">Inicio</a></li>
             <li><a href="#experience">Trayectoria</a></li>
@@ -356,17 +367,17 @@
             </div>
 
             <div class="glass-form-wrapper">
-                <form class="modern-form">
+                <form class="modern-form" action="https://formspree.io/f/xkokvzqg" method="POST">
                     <div class="input-group">
-                        <input type="text" id="name" required placeholder=" ">
+                        <input type="text" id="name" name="Nombre" required placeholder=" ">
                         <label for="name">Nombre completo</label>
                     </div>
                     <div class="input-group">
-                        <input type="email" id="email" required placeholder=" ">
+                        <input type="email" id="email" name="Email" required placeholder=" ">
                         <label for="email">Correo electrónico</label>
                     </div>
                     <div class="input-group">
-                        <textarea id="msg" required placeholder=" " rows="4"></textarea>
+                        <textarea id="msg" name="Mensaje" required placeholder=" " rows="4"></textarea>
                         <label for="msg">Cuéntame sobre tu proyecto...</label>
                     </div>
                     <button type="submit" class="btn-glow">
@@ -378,27 +389,50 @@
     </section>
 
     <footer class="main-footer">
-        <div class="footer-container">
-            <div class="footer-col branding">
-                <div class="logo">OSVA<span>.LOGIC</span></div>
-                <ul class="footer-tagline">
-                    <li><i class="fas fa-code"></i> Tecnología</li>
-                    <li><i class="fas fa-microchip"></i> Lógica</li>
-                    <li><i class="fas fa-rocket"></i> Innovación</li>
-                </ul>
+        
+        <!-- LOGO SUPERIOR CENTRADO -->
+        <div class="footer-top-branding">
+            
+            <!-- Círculo y líneas rojas que cruzan por detrás del logo -->
+            <div class="radar-container">
+                <div class="radar-circle"></div>
+                <div class="radar-line-h"></div>
+                <div class="radar-line-v"></div>
             </div>
 
+            <div class="branding-content">
+                <div class="side-item"><i class="fas fa-code"></i> Tecnología</div>
+                
+                <div class="center-hud">
+                    <div class="logo">
+                        <img src="templates/Logo color blanco.png" alt="Logo Osva.Logic" class="nav-logo-icon">
+                        <div class="logo-text">OSVA<span>.LOGIC</span></div>
+                    </div>
+                    <div class="footer-socials">
+                        <a href="https://github.com/OsvaLogic" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://instagram.com/Osva.Logic" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/56984507444?text=Hola%20Osvaldo,%20vi%20tu%20portafolio%20y%20me%20gustaría%20contactarte." target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="side-item"><i class="fas fa-rocket"></i> Innovación</div>
+            </div>
+        </div>
+
+        <div class="footer-container">
+            
+            <!-- Columna 1 -->
             <div class="footer-col">
-                <h4>Enlaces rápidos</h4>
+                <h4>Navegación</h4>
                 <ul>
                     <li><a href="#home">Inicio</a></li>
                     <li><a href="#experience">Trayectoria</a></li>
                     <li><a href="#projects">Proyectos</a></li>
-                    <li><a href="#skills">Stack</a></li>
                     <li><a href="#contact">Contacto</a></li>
                 </ul>
             </div>
 
+            <!-- Columna 2 -->
             <div class="footer-col">
                 <h4>Servicios</h4>
                 <ul>
@@ -409,13 +443,12 @@
                 </ul>
             </div>
 
+            <!-- Columna 3 -->
             <div class="footer-col">
                 <h4>Contacto</h4>
-                <p>osvaldosanhueza98@gmail.com</p>
-                <p>+56 9 8450 7444</p>
-                <div class="footer-socials">
-                    <a href="https://github.com/OsvaLogic" target="_blank"><i class="fab fa-github"></i></a>
-                    <a href="https://instagram.com/Osva.Logic" target="_blank"><i class="fab fa-instagram"></i></a>
+                <div class="footer-contact-info" style="color: var(--text-dim); font-size: 0.9rem;">
+                    <p style="margin-bottom: 5px;"><i class="fas fa-envelope"></i> osvaldosanhueza98@gmail.com</p>
+                    <p><i class="fas fa-phone"></i> +56 9 8450 7444</p>
                 </div>
             </div>
         </div>
